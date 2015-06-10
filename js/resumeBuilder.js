@@ -5,7 +5,7 @@ var bio = {
 	"contacts" : {
 		"email" : "aramos72@gmail.com",
 		"github" : "aramo011",
-		"location" : "Miami"
+		"location" : "Miami, FL"
 	},	
 	"picture" : "images/fry.jpg",
 	"welcomeMsg" : "Welcome",
@@ -48,19 +48,19 @@ var project = {
 			"title" : "Mockup",
 			"dates" : "4/2015",
 			"description" : "Design a web page based on a mockup",
-			"images" : ["www.github.com/aramo011"]
+			"images" : ["images/project1_320x282.png"]
 		},
 		{
 			"title" : "Resume",
 			"dates" : "5/2015",
 			"description" : "Build a resume web page",
-			"images" : ["www.github.com/aramo011"]
+			"images" : ["images/project2_320x282.png"]
 		},		
 		{
 			"title" : "Arcade Game",
 			"dates" : "7/2015",
 			"description" : "Build a javascript-based game",
-			"images" : ["www.github.com/aramo011"]
+			"images" : ["images/project3.png"]
 		}
 	]
 };
@@ -112,13 +112,18 @@ bio.display = function() {
 
 	if (bio.skills.length > 0) {
 		$("#header").append(HTMLskillsStart);
-
+		for (var index in bio.skills) {
+			var formattedSkill = HTMLskills.replace("%data%", bio.skills[index]);
+			$("#skills").append(formattedSkill);
+		}
+		/*
 		var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
 		$("#skills").append(formattedSkill);
 		formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
 		$("#skills").append(formattedSkill);
 		formattedSkill = HTMLskills.replace("%data%", bio.skills[2]);
 		$("#skills").append(formattedSkill);
+		*/
 	}
 
 	$("#topContacts").append(formattedEmail);
@@ -131,7 +136,7 @@ bio.display = function() {
 
 /* Work Experience */
 work.display = function() {
-	for (index in work.jobs) {
+	for (var index in work.jobs) {
 		var formattedEmployer = HTMLworkEmployer.replace("%data%", work.jobs[index].employer);
 		var formattedTitle = HTMLworkTitle.replace("%data%", work.jobs[index].title);
 		var formattedDates = HTMLworkDates.replace("%data%", work.jobs[index].dates);
